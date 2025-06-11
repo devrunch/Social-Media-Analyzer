@@ -1,0 +1,271 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment & Engagement Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input[type="number"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .engagement {
+            background-color: #eef2ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Social Media Post Analyzer</h1>
+        <form method="POST" action="/analyze">
+            <label for="text">Post Text:</label>
+            <textarea name="text" id="text" required></textarea>
+
+            <label for="likes">Likes:</label>
+            <input type="number" name="likes" id="likes" value="0">
+
+            <label for="comments">Comments:</label>
+            <input type="number" name="comments" id="comments" value="0">
+
+            <label for="shares">Shares:</label>
+            <input type="number" name="shares" id="shares" value="0">
+
+            <label for="timestamp">Post Time:</label>
+            <input type="datetime-local" name="timestamp" id="timestamp" required>
+
+            <input type="submit" value="Analyze">
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                Sentiment: <strong>{{ prediction }}</strong>
+            </div>
+        {% endif %}
+
+        {% if engagement %}
+            <div class="result engagement">
+                Engagement Level: <strong>{{ engagement }}</strong>
+                <h4>Category: {{ engagement_cat }}</h4>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment & Engagement Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        input[type="number"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 0.6rem;
+            margin-top: 0.3rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            background-color: #6d28d9; /* Purple button */
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #5b21b6; /* Slightly darker on hover */
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .engagement {
+            background-color: #eef2ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+        }
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: #6a5acd;
+            font-size: 1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Social Media Post Analyzer</h1>
+        <form method="POST" action="/analyze">
+            <label for="text">Post Text:</label>
+            <textarea name="text" id="text" required></textarea>
+
+            <label for="likes">Likes:</label>
+            <input type="number" name="likes" id="likes" value="0">
+
+            <label for="comments">Comments:</label>
+            <input type="number" name="comments" id="comments" value="0">
+
+            <label for="shares">Shares:</label>
+            <input type="number" name="shares" id="shares" value="0">
+
+            <label for="timestamp">Post Time:</label>
+            <input type="datetime-local" name="timestamp" id="timestamp" required>
+
+            <input type="submit" value="Analyze">
+        </form>
+
+        <!-- {% if prediction %}
+            <div class="result">
+                Sentiment: <strong>{{ prediction }}</strong>
+            </div>
+        {% endif %} -->
+
+        {% if engagement %}
+            <div class="result engagement">
+                Engagement Level: <strong>{{ engagement }}</strong>
+                <h4>Category: {{ engagement_cat }}</h4>
+            </div>
+        {% endif %}
+
+         <!-- <a href="/">🔙 Back to Home</a> -->
+         <a href="/">
+        <span>🔙</span> Back to Home
+    </a>
+    </div>
+</body>
+</html>

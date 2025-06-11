@@ -1,0 +1,121 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Predictor</title>
+</head>
+<body>
+    <h1>🧠 Sentiment Analysis</h1>
+    <p>Enter your post text below to predict its sentiment.</p>
+
+    <form method="POST">
+        <label for="text">Post Text:</label><br>
+        <textarea name="text" rows="5" cols="60" required></textarea><br><br>
+        <input type="submit" value="Predict Sentiment">
+    </form>
+
+    {% if prediction %}
+        <h2>Predicted Sentiment: {{ prediction }}</h2>
+    {% endif %}
+
+    <br>
+    <a href="/">🔙 Back to Home</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Predictor</title>
+    <style>
+        body {
+            background: #f9f9fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .container {
+            display: inline-block;
+            padding: 40px;
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #333;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 500px;
+            height: 120px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #6a5acd;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #5b4bc0;
+        }
+
+        .prediction {
+            font-size: 1.2rem;
+            color: #222;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: #6a5acd;
+            font-size: 1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🧠 Sentiment Analysis</h1>
+        <p>Enter your post text below to predict its sentiment.</p>
+
+        <form method="POST">
+            <textarea name="text" placeholder="Type your post here..." required></textarea><br>
+            <input type="submit" value="Predict Sentiment">
+        </form>
+
+        {% if prediction %}
+            <div class="prediction">Predicted Sentiment: <strong>{{ prediction }}</strong></div>
+        {% endif %}
+
+        <a href="/">🔙 Back to Home</a>
+    </div>
+
+</body>
+</html>
