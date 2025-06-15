@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/Social Media Analyzer/app.py" }
+    { "source": "/(.*)", "destination": "/Social Media Analyzer/app" }
   ]
 }
