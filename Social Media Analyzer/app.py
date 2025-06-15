@@ -109,5 +109,3 @@ def estimate():
 
     return render_template("estimate.html", predicted_engagement=None, category=None)
 
-if __name__ == "__main__":
-    app.run(debug=True)
